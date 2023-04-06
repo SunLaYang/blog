@@ -6,9 +6,9 @@ spring:
     password: 123456
   jpa:
     show-sql: true
-jpa:
-  hibernate:
-    ddl-auto: update
+    hibernate:
+      use_new_id_generator_mappings: false
+      ddl-auto: create
 
 logging:
   level:

@@ -1,4 +1,6 @@
 spring:
- profiles:
+  thymeleaf:
+    mode: HTML
+  profiles:
    active: dev
 
