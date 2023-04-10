@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog管理</title>
+    <title>Blog頁面</title>
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css"
     />
     <link
-      rel="stylesheet"
-      href="../../static/lib/editormd/css/editormd.min.css"
-      th:href="@{/lib/editormd/css/editormd.min.css}"
+            rel="stylesheet"
+            href="../../static/lib/editormd/css/editormd.min.css"
+            th:href="@{/lib/editormd/css/editormd.min.css}"
     />
     <link
-      rel="stylesheet"
-      href="../static/css/me.css"
-      th:href="@{/css/me.css}"
+            rel="stylesheet"
+            href="../../static/css/me.css"
+            th:href="@{/css/me.css}"
     />
-    <link rel="stylesheet" href="../static/css/me.css" />
-  </head>
+    <link rel="stylesheet" href="../../static/lib/prism/prism.css">
+    <link rel="stylesheet" href="../../static/css/typo.css">
+    <link rel="stylesheet" href="../../static/css/animate.css">
+    <link rel="stylesheet" href="../../static/css/me.css" />
+</head>
   <body>
     <!-- 導覽列 -->
-    <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+    <nav th:replace="admin/_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
       <div class="ui container">
         <div class="ui inverted secondary stackable menu">
           <h2 class="ui header teal item">管理後臺</h2>
@@ -139,7 +142,7 @@
 
 
     <!-- 底部 -->
-    <footer class="ui inverted vertical segment m-padded-tb-massive m-opacity">
+    <footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive m-opacity">
         <!--容器-->
         <div class="ui center aligned container">
             <div class="ui inverted divided stackable grid">

@@ -8,7 +8,7 @@ spring:
     show-sql: true
     hibernate:
       use_new_id_generator_mappings: false
-      ddl-auto: create
+      ddl-auto: update
 
 logging:
   level:

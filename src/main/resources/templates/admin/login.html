@@ -6,19 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog管理登入</title>
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css"
     />
     <link
-      rel="stylesheet"
-      href="../../static/lib/editormd/css/editormd.min.css"
-      th:href="@{/lib/editormd/css/editormd.min.css}"
+            rel="stylesheet"
+            href="../../static/lib/editormd/css/editormd.min.css"
+            th:href="@{/lib/editormd/css/editormd.min.css}"
     />
     <link
-      rel="stylesheet"
-      href="../static/css/me.css"
-      th:href="@{/css/me.css}"
+            rel="stylesheet"
+            href="../../static/css/me.css"
+            th:href="@{/css/me.css}"
     />
+    <link rel="stylesheet" href="../../static/lib/prism/prism.css">
+    <link rel="stylesheet" href="../../static/css/typo.css">
+    <link rel="stylesheet" href="../../static/css/animate.css">
     <link rel="stylesheet" href="../../static/css/me.css" />
   </head>
   <body>
@@ -41,7 +44,7 @@
                           <div class="field">
                               <div class="ui left icon input">
                                   <i class="user icon"></i>
-                                  <input type="text" name="email" placeholder="使用者帳號">
+                                  <input type="text" name="username" placeholder="使用者帳號">
                               </div>
                           </div>
                           <div class="field">
@@ -50,10 +53,13 @@
                                   <input type="password" name="password" placeholder="密碼">
                               </div>
                           </div>
-                          <div class="ui fluid large teal submit button">登   入</div>
+                          <button class="ui fluid large teal submit button">登   入</button>
                       </div>
 
                       <div class="ui error message"></div>
+                      <div class="ui mini negative message" th:unless="${#strings.isEmpty(messages)}" th:text="${message}">
+                        帳號或密碼錯誤
+                      </div>
 
                   </form>
 
@@ -65,6 +71,27 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+
+  <script>
+      $('.ui.form').form({
+          fields: {
+              username : {
+                  identifier: 'username',
+                  rules:[{
+                      type : 'empty',
+                      prompt: '請輸入用戶名'
+                  }]
+              },
+              password : {
+                  identifier: 'password',
+                  rules:[{
+                      type : 'empty',
+                      prompt: '請輸入密碼'
+                  }]
+              }
+          }
+      });
+  </script>
 
   </body>
 </html>
