@@ -12,6 +12,8 @@ public class Blog {
     @GeneratedValue
     private Long id;
     private String title;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private String content;
     private String firstPicture;
     private String flag;
@@ -35,9 +37,18 @@ public class Blog {
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
 
+    private String description;
 
 
     public Blog() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getId() {
@@ -192,6 +203,11 @@ public class Blog {
                 ", recommend=" + recommend +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", type=" + type +
+                ", tags=" + tags +
+                ", user=" + user +
+                ", comments=" + comments +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
