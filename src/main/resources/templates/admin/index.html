@@ -51,8 +51,8 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="right menu">
-                <a href="#" class="item">發布</a>
-                <a href="#" class="active item teal">清單</a>
+              <a href="#" th:href="@{/admin/blogs/input}" class=" teal item">發布</a>
+              <a href="#" th:href="@{/admin/blogs}" class="active item">清單</a>
             </div>       
         </div>
     </div>
@@ -91,7 +91,6 @@
                 <div class="four wide column" >
                     <div class="ui inverted link list">
                         <div class="item">
-                            <!--微信二维码-->
                             <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced " >GitHub</div>
                             <img src="../static/images/oneStar.jpg" th:src="@{/images/oneStar.jpg}"  class="ui m-margin-top rounded image" alt="" style="width: 110px">
                         </div>
@@ -101,13 +100,11 @@
                 <div class="four wide column">
                     <div class="ui inverted link list">
                         <div class="item">
-                            <!--微信二维码-->
                             <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced " >問題留言</div>
                             <img src="../static/images/QQ-question.jpg" th:src="@{/images/QQ-question.jpg}"  class="ui m-margin-top rounded image" alt="" style="width: 110px">
                         </div>
                     </div>
                 </div>
-                <!--博客运行时间统计-->
                 <div class="four wide column">
                     <div style="font-size: large;font-weight: bold" class="ui inverted  m-text-thin m-text-spaced m-margin-top">QR-CODE</div>
                     <!--<p id="htmer_time" class="item m-text-thin"></p>-->
@@ -141,7 +138,6 @@
         $('.ui.dropdown').dropdown({
             on:'hover'
         });
-
         
     </script>
   </body>
