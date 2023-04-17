@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head th:replace="_fragments :: head(~{::title})">
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,18 +58,19 @@
                                 <h2 class="ui teal header" >Blob</h2>
                             </div>
                             <div class="right aligned column">
-                                共 <h2 class="ui orange header m-inline-block m-text-thin">14</h2>篇
+                                共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${page.totalElements}">14</h2>篇
                             </div>
                         </div>
                     </div>
 
                     <!-- content -->
                     <div class="ui attached  segment">
-                        <div class="ui padded  vertical segment m-padded-tb-large" >
-                            <div class="ui mobile reversed stackable grid">
+                        
+                        <div class="ui padded  vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
+                            <div class="ui middle aligned mobile reversed stackable grid">
                                 <div class="ui eleven wide column">
-                                    <h3 class="ui header">這是我第一篇文章!</h3>
-                                    <p class="m-text">
+                                    <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">這是我第一篇文章!</a></h3>
+                                    <p class="m-text m-margin-top-max" th:text="|${blog.description}......|"> 
                                         考慮使用Docker等容器化技術來進一步優化應用程式部署和管理
                                         使用Jenkins等自動化部署工具，簡化應用程式部署流程
                                         使用Google Analytics等分析工具，追蹤用戶行為和應用程式性能!
@@ -78,162 +79,41 @@
                                         <div class="eleven wide column">
                                             <div class="ui horizontal link list">
                                                 <div class="item">
-                                                    <img src="https://unsplash.it/100/100?image=1005" alt="" class="ui avatar image">
-                                                    <div class="content"><a class="header">Ryan</a></div>
+                                                    <img src="https://unsplash.it/100/100?image=1005" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">Ryan</a></div>
                                                 </div>
                                                 <div class="item">
-                                                    <i class="calendar icon"></i>2023-03-17
+                                                    <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2023-03-17</span>
                                                 </div>
                                                 <div class="item">
-                                                    <i class="eye icon"></i>瀏覽次數
+                                                    <i class="eye icon"></i><span th:text="${blog.views}">2222</span>
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class="right aligned five wide column">
-                                            <a href="#" target="_blank" class="ui teal basic label m-padded-mini">查看內容</a>
+                                            <a href="#" target="_blank" class="ui teal basic label m-padded-mini" th:text="${blog.type.name}">查看內容</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="../static/images/Joker03_Spawn_Variant.jpeg" alt="" class="ui rounded image" style="width: 200px; height: 150px;">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                        <img src="https://picsum.photos/200/300?grayscale" th:src="@{${blog.firstPicture}}" alt="" class="ui rounded image" style="width: 200px; height: 150px;">
                                     </a>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="ui padded  vertical segment m-padded-tb-large" >
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">這是我第一篇文章!</h3>
-                                    <p class="m-text">
-                                        考慮使用Docker等容器化技術來進一步優化應用程式部署和管理
-                                        使用Jenkins等自動化部署工具，簡化應用程式部署流程
-                                        使用Google Analytics等分析工具，追蹤用戶行為和應用程式性能!
-                                    </p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://unsplash.it/100/100?image=1005" alt="" class="ui avatar image">
-                                                    <div class="content"><a class="header">Ryan</a></div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i>2023-03-17
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i>瀏覽次數
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="#" target="_blank" class="ui teal basic label m-padded-mini">查看內容</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="../static/images/Joker03_Spawn_Variant.jpeg" alt="" class="ui rounded image" style="width: 200px; height: 150px;">
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="ui padded  vertical segment m-padded-tb-large" >
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">這是我第一篇文章!</h3>
-                                    <p class="m-text">
-                                        考慮使用Docker等容器化技術來進一步優化應用程式部署和管理
-                                        使用Jenkins等自動化部署工具，簡化應用程式部署流程
-                                        使用Google Analytics等分析工具，追蹤用戶行為和應用程式性能!
-                                    </p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://unsplash.it/100/100?image=1005" alt="" class="ui avatar image">
-                                                    <div class="content"><a class="header">Ryan</a></div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i>2023-03-17
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i>瀏覽次數
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="#" target="_blank" class="ui teal basic label m-padded-mini">查看內容</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="../static/images/Joker03_Spawn_Variant.jpeg" alt="" class="ui rounded image" style="width: 200px; height: 150px;">
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="ui padded  vertical segment m-padded-tb-large" >
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="ui eleven wide column">
-                                    <h3 class="ui header">這是我第一篇文章!</h3>
-                                    <p class="m-text">
-                                        考慮使用Docker等容器化技術來進一步優化應用程式部署和管理
-                                        使用Jenkins等自動化部署工具，簡化應用程式部署流程
-                                        使用Google Analytics等分析工具，追蹤用戶行為和應用程式性能!
-                                    </p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://unsplash.it/100/100?image=1005" alt="" class="ui avatar image">
-                                                    <div class="content"><a class="header">Ryan</a></div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i>2023-03-17
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i>瀏覽次數
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="#" target="_blank" class="ui teal basic label m-padded-mini">查看內容</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="ui five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="../static/images/Joker03_Spawn_Variant.jpeg" alt="" class="ui rounded image" style="width: 200px; height: 150px;">
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-                        
                     </div>
 
                     <!-- footer -->
-                    <div class="ui bottom attached segment">
+                    <div class="ui bottom attached segment m-opacity" th:if="${page.totalPages}>1">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <a href="#" class="ui teal basic button">上一頁</a>
+                                <a href="#" th:href="@{/(page=${page.number}-1)}"  th:unless="${page.first}" class="ui mini teal basic button">上一頁</a>
                             </div>
                             <div class="right aligned column">
-                                <a href="#" class="ui teal basic button">下一頁</a>
+                                <a href="#" th:href="@{/(page=${page.number}+1)}"  th:unless="${page.last}" class="ui mini teal basic button">下一頁</a>
                             </div>
                         </div>
                     </div>
@@ -251,20 +131,8 @@
                         </div>
                         <div class="ui teal segment">
                             <div class="ui fluid vertical menu">
-                                <a href="#" class="item">學習日常
-                                    <div class="ui teal basic left pointing label">13</div>
-                                </a>
-                                <a href="#" class="item">學習日常
-                                    <div class="ui teal basic left pointing label">13</div>
-                                </a>
-                                <a href="#" class="item">學習日常
-                                    <div class="ui teal basic left pointing label">13</div>
-                                </a>
-                                <a href="#" class="item">學習日常
-                                    <div class="ui teal basic left pointing label">13</div>
-                                </a>
-                                <a href="#" class="item">學習日常
-                                    <div class="ui teal basic left pointing label">13</div>
+                                <a href="#" class="item" th:each="type : ${types}"><span th:text="${type.name}">學習日常</span>
+                                    <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
                                 </a>
                             </div>
 
@@ -292,18 +160,9 @@
                     <div class="ui segments m-margin-top-large">
                         <div class="ui secondary segment">                     
                                 <div class="column"><i class="bookmark icon"></i>最新推薦</div>
-                                <div class="ui segment">
-                                    <a href="#" target="_blank" class=" m-black">我的故事(my story)</a>
-                                </div>
-                                <div class="ui segment">
-                                    <a href="#" target="_blank" class=" m-black">我的故事(my story)</a>
-                                </div>
-                                <div class="ui segment">
-                                    <a href="#" target="_blank" class=" m-black">我的故事(my story)</a>
-                                </div>
-                                <div class="ui segment">
-                                    <a href="#" target="_blank" class=" m-black">我的故事(my story)</a>
-                                </div>
+                                <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class=" m-black" th:text="${blog.title}">我的故事(my story)</a>
+                                </div>                 
                         </div>
                     </div>
 
