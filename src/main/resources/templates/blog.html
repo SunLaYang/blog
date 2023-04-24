@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,10 +27,10 @@
 
   <body>
   <!-- 導覽列 -->
-  <nav class="ui inverted attached segment" m-padded-tb-mini>
+  <nav th:replace="admin/_fragments :: menu(1)" class="ui inverted attached segment" m-padded-tb-mini>
     <div class="ui container">
       <div class="ui inverted secondary stackable menu">
-        <h2 class="ui header teal">Ryan Blob</h2>
+        <h2 class="ui header teal">Ryan Blog</h2>
         <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首頁</a>
         <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分類</a>
         <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>標籤</a>
@@ -55,40 +55,40 @@
       <div class="ui top attached segment">
         <div class="ui horizontal link list">
           <div class="item">
-            <img src="https://unsplash.it/100/100?image=1005" alt="" class="ui avatar image">
-            <div class="content"><a class="header">Ryan</a></div>
+            <img src="https://unsplash.it/100/100?image=1005" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
+            <div class="content"><a class="header"  th:text="@{blog.user.nickname}">Ryan</a></div>
           </div>
           <div class="item">
-            <i class="calendar icon"></i>2023-03-17
+            <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2023-03-17</span>
           </div>
           <div class="item">
-            <i class="eye icon"></i>瀏覽次數
+            <i class="eye icon"></i><span th:text="${blog.views}">231</span>
           </div>
         </div>
       </div>
       <div class="ui  attached segment" style="display: flex; justify-content: center; align-items: center;">
         <!-- 圖片區域 -->
-        <img src="/static/images/Joker03_Spawn_Variant.jpeg" alt="" class="ui fluid image" style="width: 500px
-          ;height: 500px;">
+        <img src="/static/images/Joker03_Spawn_Variant.jpeg" th:src="@{${blog.firstPicture}}" alt="" class="ui fluid image" style="width: 500px; height: 500px;">
       </div>
       <div class="ui attached padded segment">
         <!-- 內容 -->
         <div class="ui right aligned basic segment">
-          <div class="ui orange basic label">原創</div>
+          <div class="ui orange basic label" th:text="${blog.flag}">原創</div>
         </div>
-        <h2 class="ui center aligned  header">測試練習的清單</h2>
+        <h2 class="ui center aligned  header" th:text="${blog.title}">測試練習的清單</h2>
         <br>
-        <div id="content" class="typo typo-selection m-padded-lr-reponsive m-padded-tb-large" >
-          <p>我是一串測試的文字</p>
-          <h2>第一段</h2>
+        <div id="content" class="typo  typo-selection js-toc-content m-padded-lr-responsive m-padded-tb-large" th:utext="${blog.content}">
+          
+          <h2 id="section2">第一段</h2>
           <pre><code class="language">p { color: red} </code></pre>
           <p>在Tibame的學習中，我學習了Java相關知識，包括但不限於Spring、Hibernate、Maven等框架和工具，並且在專案實作中獲得實踐經驗。我也瞭解和應用了相關的資料庫技術和前端技術，如MySQL、HTML、CSS、JavaScript等，這些都讓我能夠有效地進行軟體開發。</p>
           <p></p>
-          <h2>第二段</h2>
+          <h2 id="section2">第二段</h2>
           <p>在Tibame的學習中，我學習了Java相關知識，包括但不限於Spring、Hibernate、Maven等框架和工具，並且在專案實作中獲得實踐經驗。我也瞭解和應用了相關的資料庫技術和前端技術，如MySQL、HTML、CSS、JavaScript等，這些都讓我能夠有效地進行軟體開發。</p>
           <p></p>
-          <h2>總結</h2>
+          <h2 id="section2">總結</h2>
         </div>
+
         <!-- 標籤 -->
         <div class="m-padded-lr">
           <div class="ui basic teal left pointing label">方法</div>
@@ -116,14 +116,14 @@
         <div class="ui middle aligned grid">
           <div class="eleven wide column">
             <ui class="list">
-              <li>作者:孫延寧</li>
-              <li>發表時間:</li>
-              <li>歡迎轉發:</li>
+              <li>作者:<span th:text="${blog.user.nickname}">孫延寧</span><a href="#" th:href="@{/about}">(聯繫我)</a></li>
+              <li>發表時間:<span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd HH:mm')}">2023-04-17 09:08</span></li>
+              <li>歡迎轉發:歡迎加入我的line</li>
             </ui>
 
           </div>
           <div class="five wide column">
-            <img src="../static/images/unnamed.png" alt="" class="ui right floated rounded bordered image" style="width: 110px;">
+            <img src="../static/images/unnamed.png" th:src="@{/images/unnamed.png}" alt="" class="ui right floated rounded bordered image" style="width: 110px;">
           </div>
         </div>
       </div>
@@ -234,7 +234,7 @@
 
 
         <!-- 底部 -->
-        <footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive m-opacity">
+        <footer th:replace="admin_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive m-opacity">
           <!--容器-->
           <div class="ui center aligned container">
               <div class="ui inverted divided stackable grid">
