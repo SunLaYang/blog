@@ -138,6 +138,10 @@ width: 100%;
     display: none !important;
 }
 
+.m-teal{
+    color: #00b5ad !important;
+}
+
 @media  screen and (max-width:768px) {
     .m-mobile-hide{
         display: none !important;

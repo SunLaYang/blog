@@ -13,6 +13,7 @@ public class Comment {
     private Long id;
     private String nickname;
     private String email;
+    private String content;
     private String avatar;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -24,6 +25,16 @@ public class Comment {
     private List<Comment> replyComments = new ArrayList<>();//多人回覆
     @ManyToOne
     private Comment parentComment;
+
+    private boolean adminComment;
+
+    public boolean isAdminComment() {
+        return adminComment;
+    }
+
+    public void setAdminComment(boolean adminComment) {
+        this.adminComment = adminComment;
+    }
 
     public Comment() {
     }
@@ -92,14 +103,27 @@ public class Comment {
         this.parentComment = parentComment;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
+                ", content='" + content + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", createTime=" + createTime +
+                ", blog=" + blog +
+                ", replyComments=" + replyComments +
+                ", parentComment=" + parentComment +
+                ", adminComment=" + adminComment +
                 '}';
     }
 }
